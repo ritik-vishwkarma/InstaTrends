@@ -28,17 +28,26 @@ const insertData = async (db, collectionName, data) => {
     try {
 
         // Create a collection
-        const collection = await db.createCollection(
-            collectionName,
-            {
-                vector: {
-                    service: {
-                        provider: "nvidia",
-                        modelName: "NV-Embed-QA",
+        const collections = await db.listCollections();
+        const collectionExists = await collections.some(collection => collection.name === collectionName);
+
+        let collection;
+        if (!collectionExists) {
+
+            collection = await db.createCollection(
+                collectionName,
+                {
+                    vector: {
+                        service: {
+                            provider: "nvidia",
+                            modelName: "NV-Embed-QA",
+                        },
                     },
-                },
-            }
-        );
+                }
+            );
+        } else {
+            collection = db.collection(collectionName);
+        }
 
         // Define the embedding string creator function
         const embeddingStringCreator = item => `type: ${item.type}`;
