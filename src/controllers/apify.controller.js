@@ -36,7 +36,6 @@ const runActor = asyncHandler(async (req, res) => {
         // Filter the data
         const filteredData = items.map(item => ({
             type: item.type,
-            commentCount: item.commentCount,
             likesCount: item.likesCount,
             commentsCount: item.commentsCount,
             hashtags: item.hashtags,

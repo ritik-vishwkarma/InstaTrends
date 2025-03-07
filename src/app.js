@@ -30,10 +30,12 @@ app.use((req, _, next) => {
 
 import apifyRouter from "./routers/apify.routes.js"
 import llmRouter from "./routers/apify.routes.js"
+// import llmRouter from "./routers/apify.routes.js"
 import llmEndpoint from "./routers/apify.routes.js"
 
 app.use("/apify", apifyRouter) // http://localhost:3000/apify/run-actor
-app.use("/llm", llmRouter) // http://localhost:3000/llm/query
+// app.use("/llm", llmRouter) // http://localhost:3000/llm/query
 app.use("/NVIDIA", llmEndpoint) // http://localhost:3000/NVIDIA/llmquery
+app.use("/openai", llmRouter) // http://localhost:3000/openai/llm
 
 export { app };
