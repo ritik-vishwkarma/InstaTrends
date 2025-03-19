@@ -32,6 +32,19 @@ const runActor = asyncHandler(async (req, res) => {
         if (!items || items.length === 0) {
             throw new ApiError(404, "No items found in the dataset");
         }
+        
+
+        // Log detailed information about the items
+        console.log(`📋 Received ${items.length} items from Apify`);
+        
+        // Log the first item as a sample (with proper depth)
+        console.log("📝 Sample item structure:", JSON.stringify(items[0], null, 2));
+        
+        // // Log all item types
+        // const itemTypes = items.map(item => item.type);
+        // console.log("📑 Item types:", itemTypes);
+
+
 
         // Filter the data
         const filteredData = items.map(item => ({
@@ -60,7 +73,7 @@ const runActor = asyncHandler(async (req, res) => {
                     200,
                     { data: filteredData, collectionName },
                     "Data fetched successfully")
-            );
+            );F
     } catch (error) {
         console.error("Error running the actor:", error);
         throw new ApiError(500, "Failed to run the actor.");
