@@ -73,7 +73,7 @@ const runActor = asyncHandler(async (req, res) => {
                     200,
                     { data: filteredData, collectionName },
                     "Data fetched successfully")
-            );F
+            );
     } catch (error) {
         console.error("Error running the actor:", error);
         throw new ApiError(500, "Failed to run the actor.");
